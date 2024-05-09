@@ -1,0 +1,77 @@
+﻿@model CreateDocumentViewModel
+
+@{
+    ViewData["Title"] = "Insert Document";
+}
+
+
+<form asp-controller="Account" asp-action="Login" method="post">
+    <h2>Create Document</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.AgreementNumber)
+                @Html.TextBoxFor(model => model.AgreementNumber, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AgreementNumber)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BranchID)
+                @Html.TextBoxFor(model => model.BranchID, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BranchID)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NoBPKB)
+                @Html.TextBoxFor(model => model.NoBPKB, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NoBPKB)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TanggalBPKBIn)
+                @Html.TextBoxFor(model => model.TanggalBPKBIn, new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(model => model.TanggalBPKBIn)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TanggalBPKB)
+                @Html.TextBoxFor(model => model.TanggalBPKB, new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(model => model.TanggalBPKB)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NoFaktur)
+                @Html.TextBoxFor(model => model.NoFaktur, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NoFaktur)
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TanggalFaktur)
+                @Html.TextBoxFor(model => model.TanggalFaktur, new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(model => model.TanggalFaktur)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.NoPolisi)
+                @Html.TextBoxFor(model => model.NoPolisi, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NoPolisi)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.LokasiPenyimpanan)
+                @Html.DropDownListFor(model => model.LokasiPenyimpanan, Model.LokasiPenyimpananList, "Select Lokasi Penyimpanan", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LokasiPenyimpanan)
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row justify-content-end" style="margin-top: 20px;">
+        <div class="col-md-6 text-right">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-danger">Cancel</a>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </div>
+</form>
+
