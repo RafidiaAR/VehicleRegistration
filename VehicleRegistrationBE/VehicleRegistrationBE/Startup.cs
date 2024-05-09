@@ -21,9 +21,12 @@ namespace VehicleRegistrationBE
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+
             services.AddDbContext<MasterDBDataContext>(options => options.UseSqlServer(Configuration["ConnectionString:MasterConnection"]));
             services.AddDbContext<TransactionDBDataContext>(options => options.UseSqlServer(Configuration["ConnectionString:TransactionConnection"]));
+            
             services.AddScoped<StorageLocationRepository>();
+            services.AddScoped<UserRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
