@@ -27,6 +27,7 @@ namespace VehicleRegistrationBE
             
             services.AddScoped<StorageLocationRepository>();
             services.AddScoped<UserRepository>();
+            services.AddScoped<DocumentRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
