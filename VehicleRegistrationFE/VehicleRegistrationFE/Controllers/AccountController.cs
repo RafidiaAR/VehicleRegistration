@@ -1,16 +1,34 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using System.Net;
+using System.Text;
 using VehicleRegistrationFE.Models;
+using VehicleRegistrationFE.Models.Request;
+using VehicleRegistrationFE.Models.Response;
+using Microsoft.AspNetCore.Http;
 
 namespace VehicleRegistrationFE.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly string _baseUrl;
+
+        public AccountController(IOptions<BackendAPIConfig> backendApiConfig)
+        {
+            _baseUrl = backendApiConfig.Value.BaseUrl;
+        }
 
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login()
         {
-            ViewBag.ReturnUrl = returnUrl;
+            string username = HttpContext.Session.GetString("Username");
+            if (!string.IsNullOrEmpty(username)) 
+            {
+                return RedirectToAction("Create", "Document");
+            }
+
             return View();
         }
 
@@ -30,10 +48,32 @@ namespace VehicleRegistrationFE.Controllers
                 return View(model);
             }
 
-            // Validate user credentials
-            //...
+            var request = new UserLoginRequest
+            {
+                Username = model.UserName,
+                Password = model.Password,
+            };
+            string url = $"{_baseUrl}/User/Login";
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            using (HttpClient httpClient = new HttpClient(clientHandler))
+            {
+                string strData = JsonConvert.SerializeObject(request);
 
-            return RedirectToAction("Index", "Home");
+                StringContent contentData = new StringContent(strData, Encoding.UTF8, "application/json");
+                var response = await httpClient.PostAsync(url, contentData);
+                var content = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<UserLoginResponse>(content);
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    HttpContext.Session.SetString("Username", result.Data.Username);
+                    return RedirectToAction("Create", "Document");
+                }
+                else
+                {
+                    ViewBag.Errors = result.Message;
+                    return View(model);
+                }
+            }
         }
     }
 }

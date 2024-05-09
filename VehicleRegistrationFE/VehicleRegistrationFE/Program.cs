@@ -1,7 +1,16 @@
+using Microsoft.Extensions.Configuration;
+using VehicleRegistrationFE.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var Configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json")
+    .Build();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.Configure<BackendAPIConfig>(Configuration.GetSection("BackendAPI"));
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -15,9 +24,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
+app.UseSession();
 app.UseAuthorization();
 
 app.MapControllerRoute(

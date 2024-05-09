@@ -5,45 +5,46 @@
 }
 
 
-<form asp-controller="Account" asp-action="Login" method="post">
+<form asp-controller="Document" asp-action="Create" method="post">
     <h2>Create Document</h2>
     <hr />
     <div class="row">
+        @Html.HiddenFor(model => model.LokasiPenyimpananList)
         <div class="col-md-6">
             <div class="form-group">
                 @Html.LabelFor(model => model.AgreementNumber)
                 @Html.TextBoxFor(model => model.AgreementNumber, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.AgreementNumber)
+                @Html.ValidationMessageFor(m => m.AgreementNumber, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.BranchID)
                 @Html.TextBoxFor(model => model.BranchID, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.BranchID)
+                @Html.ValidationMessageFor(model => model.BranchID, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.NoBPKB)
                 @Html.TextBoxFor(model => model.NoBPKB, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.NoBPKB)
+                @Html.ValidationMessageFor(model => model.NoBPKB, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.TanggalBPKBIn)
                 @Html.TextBoxFor(model => model.TanggalBPKBIn, new { @class = "form-control", type = "date" })
-                @Html.ValidationMessageFor(model => model.TanggalBPKBIn)
+                @Html.ValidationMessageFor(model => model.TanggalBPKBIn, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.TanggalBPKB)
                 @Html.TextBoxFor(model => model.TanggalBPKB, new { @class = "form-control", type = "date" })
-                @Html.ValidationMessageFor(model => model.TanggalBPKB)
+                @Html.ValidationMessageFor(model => model.TanggalBPKB, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.NoFaktur)
                 @Html.TextBoxFor(model => model.NoFaktur, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.NoFaktur)
+                @Html.ValidationMessageFor(model => model.NoFaktur, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -51,17 +52,17 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.TanggalFaktur)
                 @Html.TextBoxFor(model => model.TanggalFaktur, new { @class = "form-control", type = "date" })
-                @Html.ValidationMessageFor(model => model.TanggalFaktur)
+                @Html.ValidationMessageFor(model => model.TanggalFaktur, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.NoPolisi)
                 @Html.TextBoxFor(model => model.NoPolisi, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.NoPolisi)
+                @Html.ValidationMessageFor(model => model.NoPolisi, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.LokasiPenyimpanan)
                 @Html.DropDownListFor(model => model.LokasiPenyimpanan, Model.LokasiPenyimpananList, "Select Lokasi Penyimpanan", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.LokasiPenyimpanan)
+                @Html.ValidationMessageFor(model => model.LokasiPenyimpanan, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
