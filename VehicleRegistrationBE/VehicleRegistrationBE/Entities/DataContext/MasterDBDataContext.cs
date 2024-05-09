@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace VehicleRegistrationBE.Entities
+namespace VehicleRegistrationBE.Entities.DataContext
 {
     public class MasterDBDataContext : DbContext
     {

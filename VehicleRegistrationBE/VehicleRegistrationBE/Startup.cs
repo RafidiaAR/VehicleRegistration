@@ -1,7 +1,7 @@
 ﻿
 
 using Microsoft.EntityFrameworkCore;
-using VehicleRegistrationBE.Entities;
+using VehicleRegistrationBE.Entities.DataContext;
 
 namespace VehicleRegistrationBE
 {
