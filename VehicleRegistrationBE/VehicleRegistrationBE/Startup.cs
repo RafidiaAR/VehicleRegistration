@@ -2,6 +2,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using VehicleRegistrationBE.Entities.DataContext;
+using VehicleRegistrationBE.Repositories;
 
 namespace VehicleRegistrationBE
 {
@@ -22,6 +23,7 @@ namespace VehicleRegistrationBE
             services.AddSwaggerGen();
             services.AddDbContext<MasterDBDataContext>(options => options.UseSqlServer(Configuration["ConnectionString:MasterConnection"]));
             services.AddDbContext<TransactionDBDataContext>(options => options.UseSqlServer(Configuration["ConnectionString:TransactionConnection"]));
+            services.AddScoped<StorageLocationRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
