@@ -9,5 +9,6 @@ namespace VehicleRegistrationBE.Entities
         }
 
         public virtual DbSet<MsUserEntity> MasterUserEntities { get; set; }
+        public virtual DbSet<MsStorageLocationEntity> MasterStorageLocationEntities { get; set; }
     }
 }

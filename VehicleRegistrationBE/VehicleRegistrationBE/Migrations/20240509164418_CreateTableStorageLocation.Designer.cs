@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VehicleRegistrationBE.Entities;
 
@@ -11,9 +12,10 @@ using VehicleRegistrationBE.Entities;
 namespace VehicleRegistrationBE.Migrations
 {
     [DbContext(typeof(MasterDBDataContext))]
-    partial class MasterDBDataContextModelSnapshot : ModelSnapshot
+    [Migration("20240509164418_CreateTableStorageLocation")]
+    partial class CreateTableStorageLocation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
